@@ -69,7 +69,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="init()">
+
+<!-- onload="init()" -->
+<body >
     <header>Hi <%= user.userName %>, Welcome to Your Kanban Board!</header>
     
     
@@ -101,7 +103,7 @@
             <ul id="uL1">
             <% todos.forEach( el => { %>
                     <li class='todoItem kanbannote'  data-id='<%=el._id%>'>
-                        <span id="colorFucker" class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                        <span id="color" class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                         <span class='del'> Delete </span>
                     </li>
             <% }) %>    

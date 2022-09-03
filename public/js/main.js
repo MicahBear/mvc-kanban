@@ -73,15 +73,15 @@
 //     }
 // }
 
-function init() {
-    return dragula([
-        document.getElementById('uL1'), //parent container:todo
-        document.getElementById('uL2'), //parent container: inprogress
-        document.getElementById('uL3'), // parent container: completed
-        //document.getElementById('4'),
-        //document.getElementById('5')
-    ])
-}
+// function init() {
+//     return dragula([
+//         document.getElementById('uL1'), //parent container:todo
+//         document.getElementById('uL2'), //parent container: inprogress
+//         document.getElementById('uL3'), // parent container: completed
+//         //document.getElementById('4'),
+//         //document.getElementById('5')
+//     ])
+// }
 
 const btn = document.getElementById('displayandhide').addEventListener('click', displayOrHide); // button to hide the input 
 
