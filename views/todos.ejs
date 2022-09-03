@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,25 +8,132 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
-    <ul>
-    <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='del'> Delete </span>
+    <div class="master-container">
+        <div id="title-container">
+            <h1>Todos</h1>
+            
+    </div>
+    <div class="kanban-board-container">
+      <div id="todo-board" class="todo-holder">
+        <span class="todo-board-title">ToDo</span>
+        <ul>
+        <% todos.forEach( el => { %>
+                <li class='todoItem' data-id='<%=el._id%>'>
+                    <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                    <span class='del'> Delete </span>
+                </li>
+        <% }) %>    
+        </ul>
+        
+
+        
+      </div>
+      <div id="progress-board" class="todo-holder">
+        <span class="todo-board-title">In Progress</span>
+        <ul id="progress">
+            <li class ='progressItem'>
+                <span></span>
             </li>
-    <% }) %>    
-    </ul>
+        </ul>
+      </div>
+      <div id="completed-board" class="todo-holder">
+        <span class="todo-board-title">Completed</span>
+        <ul id="completedTask">
+            <li class="completedTask">
+                <span></span>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
     <h2><%= user.userName %> has <%= left %> things left to do.</h2>
 
     <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <input type="text" placeholder="Create a ToDo" name='todoItem'>
         <input type="submit">
     </form>
 
     <a href="/logout">Logout</a>
 
+    <script src="js/main.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="init()">
+    <header>Hi <%= user.userName %>, Welcome to Your Kanban Board!</header>
+    
+    
+
+    <div class="card">
+        <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+        <a href="/logout">Logout</a>
+    </div>
+    <div>
+        <section class="kanbancolumn">
+            <section class="kanbantitle">To Do</section>
+                <button id="displayandhide">Create a new task</button>
+
+                <form action="/todos/createTodo" method='POST' id="form">
+                    <span> 
+                        <label for="task">Task</label>
+                        <input type="text" placeholder="Enter Todo Item" name='title'>
+                    </span>
+                    <span>
+                        <label for="description">Description</label>
+                        <textarea placeholder="description" name="description"></textarea>
+
+                    </span>
+                    <input type="submit">
+                </form>
+
+
+
+            <ul id="uL1">
+            <% todos.forEach( el => { %>
+                    <li class='todoItem kanbannote'  data-id='<%=el._id%>'>
+                        <span id="colorFucker" class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                        <span class='del'> Delete </span>
+                    </li>
+            <% }) %>    
+            </ul>
+            </section>
+
+        <section class="kanbancolumn">
+            <section class="kanbantitle">Doing</section>
+            <ul id="uL2">  
+                <li class='todoItem' data-id=" ">
+                    <span class=""></span>
+                    <span class='del'></span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="kanbancolumn">
+            <section class="kanbantitle">Done</section>
+            <ul id="uL3">
+                <li class='todoItem' data-id=" ">
+                    <span class=""></span>  
+                    <span class='del'></span>
+                </li>
+            </ul>
+            </section>
+    </div>
+    
+
+   
+
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/$VERSION/dragula.min.js'></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/bevacqua/dragula@3.7.3/dist/dragula.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
